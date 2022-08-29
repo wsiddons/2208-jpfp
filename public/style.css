@@ -1,12 +1,45 @@
-body {
+* {
     margin: 0;
     background-color: rgb(30, 30, 30);
     color: limegreen;
     font-family: 'Source Code Pro', monospace;
 }
 
+/* start of navbar style */
+.nav-container {
+    margin-top: 0;
+    display: flex;
+    flex-direction: row;
+    border-top: 1px solid limegreen;
+    border-bottom: 1px solid limegreen;
+    position: fixed;
+    width: 100%;
+    top: 0
+}
+
+.nav-container h1 {
+    box-sizing: border-box;
+    margin: 20px 20px;
+    font-size: 1em;
+}
+
+/* .link {
+    color: limegreen
+} */
+
+/* end of navbar style */
+
+/* start of home style */
+.home-container h1 {
+    margin-top: 80px;
+    text-align: center;
+}
+
+/* end of home style */
+
 /* start of campus style */
 .campus-list>h1 {
+    margin: 80px 0 20px 0;
     text-align: center;
 }
 
@@ -36,7 +69,9 @@ body {
 /* end of campus style */
 
 /* start of student style */
+
 .student-list>h1 {
+    margin: 80px 0 20px 0;
     text-align: center;
 }
 
@@ -62,3 +97,5 @@ body {
 .student-card p {
     margin: 20px 40px;
 }
+
+/* end of student style */
