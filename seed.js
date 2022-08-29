@@ -34,9 +34,7 @@ const campuses = [{
     name: 'University of California, Los Angeles',
     address: 'Los Angeles, CA 90095',
     description: 'The University of California, Los Angeles (UCLA)[13] is a public land-grant research university in Los Angeles, California. UCLA’s academic roots were established in 1881 as a teachers college then known as the southern branch of the California State Normal School (now San José State University). This school was absorbed with the official founding of UCLA as the Southern Branch of the University of California in 1919, making it the second-oldest of the 10-campus University of California system (after UC Berkeley).'
-}
-
-]
+}]
 
 
 const seed = async () => {

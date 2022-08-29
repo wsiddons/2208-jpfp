@@ -1,0 +1,64 @@
+body {
+    margin: 0;
+    background-color: rgb(30, 30, 30);
+    color: limegreen;
+    font-family: 'Source Code Pro', monospace;
+}
+
+/* start of campus style */
+.campus-list>h1 {
+    text-align: center;
+}
+
+.campus-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.campus-card {
+    box-sizing: border-box;
+    width: 50%;
+    text-align: center;
+    border: 1px solid limegreen;
+}
+
+.campus-card h1 {
+    margin: 20px 40px;
+}
+
+.campus-card p {
+    margin: 20px 40px;
+}
+
+/* end of campus style */
+
+/* start of student style */
+.student-list>h1 {
+    text-align: center;
+}
+
+.student-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.student-card {
+    box-sizing: border-box;
+    width: 50%;
+    text-align: center;
+    border: 1px solid limegreen;
+}
+
+.student-card h1 {
+    margin: 20px 40px;
+}
+
+.student-card p {
+    margin: 20px 40px;
+}
