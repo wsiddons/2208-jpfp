@@ -8,35 +8,35 @@ The requirements below are broken into separate **tiers**, which model the way w
 
 #### Frontend
 
-- [ ] Write a component to display a list of all campuses (at least their names and images)
-- [ ] Write a component to display a list of all students (at least their names)
-- [ ] Write a campuses sub-reducer to manage campuses in your Redux store
-- [ ] Write a students sub-reducer to manage students in your Redux store
-- [ ] Display the all-campuses component when the url matches `/campuses`
-- [ ] Display the all-students component when the url matches `/students`
-- [ ] Add a links to the navbar that can be used to navigate to the all-campuses view and the all-students view
+- [ x] Write a component to display a list of all campuses (at least their names and images)
+- [ x] Write a component to display a list of all students (at least their names)
+- [x? ] Write a campuses sub-reducer to manage campuses in your Redux store
+- [x? ] Write a students sub-reducer to manage students in your Redux store
+- [x ] Display the all-campuses component when the url matches `/campuses`
+- [x ] Display the all-students component when the url matches `/students`
+- [x ] Add a links to the navbar that can be used to navigate to the all-campuses view and the all-students view
 
 #### Backend
 
-- [ ] Write a route to serve up all students
-- [ ] Write a route to serve up all campuses
+- [x ] Write a route to serve up all students
+- [x ] Write a route to serve up all campuses
 
 - Write a `campuses` model with the following information:
-  - [ ] name - not empty or null
-  - [ ] imageUrl - with a default value
-  - [ ] address - not empty or null
-  - [ ] description - extremely large text
+  - [x ] name - not empty or null
+  - [x ] imageUrl - with a default value
+  - [x ] address - not empty or null
+  - [x ] description - extremely large text
 - Write a `students` model with the following information:
-  - [ ] firstName - not empty or null
-  - [ ] lastName - not empty or null
-  - [ ] email - not empty or null; must be a valid email
-  - [ ] imageUrl - with a default value
-  - [ ] gpa - decimal between 0.0 and 4.0
-- [ ] Students may be associated with at most one campus. Likewise, campuses may be associated with many students
+  - [x ] firstName - not empty or null
+  - [x ] lastName - not empty or null
+  - [x ] email - not empty or null; must be a valid email
+  - [x ] imageUrl - with a default value
+  - [x ] gpa - decimal between 0.0 and 4.0
+- [x? ] Students may be associated with at most one campus. Likewise, campuses may be associated with many students
 
 #### Seed
 
-- [ ] Running the seed file creates campuses and students for demonstration purposes
+- [x ] Running the seed file creates campuses and students for demonstration purposes
 
 Congrats! You have completed your first vertical slice! Make sure to `commit -m "Feature: Get All Campuses and Students"` before moving on (see RUBRIC.md - points are awarded/deducted for a proper git workflow)!
 
@@ -49,16 +49,16 @@ Congrats! You have completed your first vertical slice! Make sure to `commit -m 
 #### Frontend
 
 - Write a component to display a single campus with the following information:
-  - [ ] The campus's name, image, address and description
+  - [x ] The campus's name, image, address and description
   - [ ] A list of the names of all students in that campus (or a helpful message if it doesn't have any students)
-- [ ] Display the appropriate campus's info when the url matches `/campuses/:campusId`
-- [ ] Clicking on a campus from the all-campuses view should navigate to show that campus in the single-campus view
+- [x ] Display the appropriate campus's info when the url matches `/campuses/:campusId`
+- [x ] Clicking on a campus from the all-campuses view should navigate to show that campus in the single-campus view
 
 - Write a component to display a single student with the following information:
-  - [ ] The student's full name, email, image, and gpa
+  - [x ] The student's full name, email, image, and gpa
   - [ ] The name of their campus (or a helpful message if they don't have one)
-- [ ] Display the appropriate student when the url matches `/students/:studentId`
-- [ ] Clicking on a student from the all-students view should navigate to show that student in the single-student view
+- [x ] Display the appropriate student when the url matches `/students/:studentId`
+- [x ] Clicking on a student from the all-students view should navigate to show that student in the single-student view
 
 - [ ] Clicking on the name of a student in the single-campus view should navigate to show that student in the single-student view
 - [ ] Clicking on the name of a campus in the single-student view should navigate to show that campus in the single-campus view

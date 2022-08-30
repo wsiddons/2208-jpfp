@@ -30,7 +30,7 @@ const student = db.define('student', {
     }
 })
 
-student.hasOne(campus)
+// student.hasOne(campus)
 campus.hasMany(student)
 
 module.exports = student

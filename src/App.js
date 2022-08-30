@@ -4,6 +4,8 @@ import CampusList from "./components/CampusList";
 import Navbar from "./components/Navbar";
 import StudentList from "./components/StudentList";
 import Home from "./components/Home";
+import SingleCampusView from "./components/SingleCampusView";
+import SingleStudentView from "./components/SingleStudentView";
 
 
 function App() {
@@ -14,12 +16,12 @@ function App() {
             <Navbar />
             <Routes>
                 <Route index element={<Home />} />
-                <Route path={'/campuses'} element={<CampusList />} />
-                <Route path={'/students'} element={<StudentList />} />
+                <Route path={'campuses'} element={<CampusList />} />
+                <Route path={'campuses/:id'} element={<SingleCampusView />} />
+                <Route path={'students'} element={<StudentList />} />
+                <Route path={'students/:id'} element={<SingleStudentView />} />
             </Routes>
-
         </>
-
     )
 }
 

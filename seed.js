@@ -8,17 +8,20 @@ const students = [{
     firstName: 'Carl',
     lastName: 'Wheezer',
     email: 'carlWheezer420@gmail.com',
-    gpa: 2.3
+    gpa: 2.3,
+    campusId: 1
 }, {
     firstName: 'Jimmy',
     lastName: 'Neutron',
     email: 'jN00t69@gmail.com',
-    gpa: 4.0
+    gpa: 4.0,
+    campusId: 1
 }, {
     firstName: 'Sheen',
     lastName: 'Lopez',
     email: 'dummythickskull12@gmail.com',
-    gpa: 1.2
+    gpa: 1.2,
+    campusId: 3
 }
 ]
 
@@ -40,13 +43,13 @@ const campuses = [{
 const seed = async () => {
     try {
         await db.sync({ force: true })
-
-        await Promise.all(students.map(student => {
-            return Student.create(student);
-        }));
         await Promise.all(campuses.map(campus => {
             return Campus.create(campus);
         }));
+        await Promise.all(students.map(student => {
+            return Student.create(student);
+        }));
+
 
         // console.log(green('Seeding success!'))
         db.close()

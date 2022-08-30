@@ -99,3 +99,45 @@
 }
 
 /* end of student style */
+
+/* start of single student style */
+.single-student-title {
+    margin-top: 80px;
+    text-align: center;
+}
+
+.single-student-container {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.single-student-card {
+    box-sizing: border-box;
+    text-align: center;
+    border: 1px solid limegreen;
+    padding: 10px 20px;
+}
+
+/* end of single student style */
+
+/* start of single campus style */
+.single-campus-title {
+    margin-top: 80px;
+    text-align: center;
+}
+
+.single-campus-container {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.single-campus-card {
+    box-sizing: border-box;
+    text-align: center;
+    border: 1px solid limegreen;
+    padding: 10px 20px;
+}
+
+/* end of single campus style */
