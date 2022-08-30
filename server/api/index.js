@@ -21,6 +21,14 @@ router.get('/students', async (req, res, next) => {
     res.send(students)
 })
 
+router.post('/students', async (req, res, next) => {
+    try {
+        res.send(await Student.create(req.body))
+    } catch (err) {
+        next(err)
+    }
+})
+
 router.use((req, res, next) => {
     const err = new Error('API route not found!')
     err.status = 404

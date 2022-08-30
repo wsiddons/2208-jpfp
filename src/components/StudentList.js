@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useParams, Link } from 'react-router-dom'
 import { getCampuses } from '../store/reducers/campusReducer'
 import { getStudents } from '../store/reducers/studentReducer'
+import StudentSideView from './StudentSideView'
 
 function StudentList() {
     const dispatch = useDispatch()
@@ -21,22 +22,25 @@ function StudentList() {
     }, [])
 
     return (
-        <div className='student-list'>
-            <h1>Student List</h1>
-            <div className='student-container'>
-
-                {state.students.map((student, idx) =>
-                    <div key={student.id} className='student-card'>
-                        <h1>{`${student.firstName} ${student.lastName}`}</h1>
-                        <Link to={`${idx + 1}`}>
-                            <img src={student.imageUrl} width='200px' />
-                        </Link>
-                        <h3>School: {student.campusId}</h3>
-                        <h3>Email: {student.email}</h3>
-                        <h3>GPA: {student.gpa}</h3>
-                    </div>
-                )}
-
+        <div className='student-page-container'>
+            <h1 className='single-student-title'>Student List</h1>
+            <div className='student-list'>
+                <div className='student-container'>
+                    {state.students.map((student, idx) =>
+                        <div key={student.id} className='student-card'>
+                            <h1>{`${student.firstName} ${student.lastName}`}</h1>
+                            <Link to={`${idx + 1}`}>
+                                <img src={student.imageUrl} width='200px' />
+                            </Link>
+                            {/* <h3>School: {student.campusId}</h3> */}
+                            <h3>Email: {student.email}</h3>
+                            <h3>GPA: {student.gpa}</h3>
+                        </div>
+                    )}
+                </div>
+                <div className='add-container'>
+                    <StudentSideView />
+                </div>
             </div>
         </div>
     )

@@ -10,8 +10,8 @@ The requirements below are broken into separate **tiers**, which model the way w
 
 - [ x] Write a component to display a list of all campuses (at least their names and images)
 - [ x] Write a component to display a list of all students (at least their names)
-- [x? ] Write a campuses sub-reducer to manage campuses in your Redux store
-- [x? ] Write a students sub-reducer to manage students in your Redux store
+- [x ] Write a campuses sub-reducer to manage campuses in your Redux store
+- [x ] Write a students sub-reducer to manage students in your Redux store
 - [x ] Display the all-campuses component when the url matches `/campuses`
 - [x ] Display the all-students component when the url matches `/students`
 - [x ] Add a links to the navbar that can be used to navigate to the all-campuses view and the all-students view
@@ -82,19 +82,19 @@ Congrats! You have completed your second vertical slice! Make sure to `commit -m
 - [x ] Display this component as part of the all-campuses view, alongside the list of campuses
 - Submitting the form with a valid name/address should:
 
-  - [x ] Make an AJAX request that causes the new campus to be persisted in the database
-  - [x?kinda ] Add the new campus to the list of campuses without needing to refresh the page
+  - [!!!!! ] Make an AJAX request that causes the new campus to be persisted in the database
+  - [x ] Add the new campus to the list of campuses without needing to refresh the page
 
-- [ ] Write a component to display a form for adding a new student that contains inputs for _at least_ first name, last name and email
-- [ ] Display this component as part of the all-students view, alongside the list of students
+- [x ] Write a component to display a form for adding a new student that contains inputs for _at least_ first name, last name and email
+- [x ] Display this component as part of the all-students view, alongside the list of students
 - Submitting the form with a valid first name/last name/email should:
-  - [ ] Make an AJAX request that causes the new student to be persisted in the database
-  - [ ] Add the new student to the list of students without needing to refresh the page
+  - [!!!!! ] Make an AJAX request that causes the new student to be persisted in the database
+  - [x ] Add the new student to the list of students without needing to refresh the page
 
 #### Backend
 
 - [x ] Write a route to add a new campus
-- [ ] Write a route to add a new student
+- [x ] Write a route to add a new student
 
 Congrats! You have completed your third vertical slice! Make sure to `commit -m "Feature: Add Campus and Student"` before moving on (see RUBRIC.md - points are awarded/deducted for a proper git workflow)!
 

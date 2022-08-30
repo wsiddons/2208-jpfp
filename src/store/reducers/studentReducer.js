@@ -2,50 +2,23 @@
 
 import axios from 'axios'
 import { fetchStudents } from '../actions/studentActions'
-let initialState = [{
-    id: 1,
-    firstName: 'Carl',
-    lastName: 'Wheezer',
-    imgUrl: 'https://lastfm.freetls.fastly.net/i/u/ar0/a771c29d9ee82c2e9455211bddcc5a84.jpg',
-    email: 'carlWheezer420@gmail.com',
-    gpa: 2.3
-}, {
-    id: 2,
-    firstName: 'Jimmy',
-    lastName: 'Neutron',
-    imgUrl: 'https://www.looper.com/img/gallery/things-only-adults-notice-in-jimmy-neutron/intro-1602679825.jpg',
-    email: 'jN00t69@gmail.com',
-    gpa: 4.0
-}, {
-    id: 3,
-    firstName: 'Sheen',
-    lastName: 'Estevez',
-    imgUrl: 'https://pbs.twimg.com/media/CtFNnScUAAEXdgQ.jpg',
-    email: 'dummythickskull12@gmail.com',
-    gpa: 1.2
-}, {
-    id: 4,
-    firstName: 'Carl',
-    lastName: 'Wheezer',
-    imgUrl: 'https://lastfm.freetls.fastly.net/i/u/ar0/a771c29d9ee82c2e9455211bddcc5a84.jpg',
-    email: 'carlWheezer420@gmail.com',
-    gpa: 2.3
-}, {
-    id: 5,
-    firstName: 'Bolbi',
-    lastName: 'Stroganovski',
-    imgUrl: 'https://static.wikia.nocookie.net/jimmyneutron/images/2/20/Bolbi.png/',
-    email: 'bolbiking@gmail.com',
-    gpa: 3.1
-}]
+
 
 // let initialState = fetchStudents()
 const GET_STUDENTS = 'GET_STUDENTS'
+const ADD_STUDENTS = 'ADD_STUDENTS'
 
 export const showStudents = (students) => {
     return {
         type: GET_STUDENTS,
         students
+    }
+}
+
+export const addStudent = (student) => {
+    return {
+        type: ADD_STUDENTS,
+        student
     }
 }
 
@@ -57,11 +30,21 @@ export function getStudents() {
     }
 }
 
+export const addStudentThunk = (student) => {
+    return async (dispatch) => {
+        const data = await axios.post('api/students', student)
+        console.log(data)
+        dispatch(addStudent(data.data))
+    }
+}
+
 const reducer = (state = [], action) => {
     switch (action.type) {
         case 'GET_STUDENTS':
             // console.log(action)
             return action.students
+        case 'ADD_STUDENTS':
+            return [...state, action.student]
         default:
             return state
     }
