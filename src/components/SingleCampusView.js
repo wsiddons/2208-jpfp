@@ -31,6 +31,22 @@ function SingleCampusView() {
         }
     })
 
+    const studentAttendingList = (
+        <>
+            <h1>Students Attending {singleCampus[0].name}:</h1>
+            {studentList.map(student =>
+                <h3 key={student.id}>{student.firstName} {student.lastName}</h3>
+            )}
+        </>
+    )
+    const noStudentsAttending = (
+        <>
+            <h1>No students currently attending {singleCampus[0].name}</h1>
+        </>
+    )
+
+
+    console.log(studentList)
     return (
         <div>
             <h1 className='single-campus-title'>Single Campus View</h1>
@@ -39,11 +55,7 @@ function SingleCampusView() {
                     <div key={campus.id} className='single-campus-card'>
                         <h1>{campus.name}</h1>
                         <img src={campus.imgUrl} />
-                        <h1>Students Attending {campus.name}:</h1>
-                        {studentList.map(student =>
-                            <h3 key={student.id}>{student.firstName} {student.lastName}</h3>
-                        )}
-                        <p>{studentList[0].name}</p>
+                        {studentList.length > 0 ? studentAttendingList : noStudentsAttending}
                         <h2>Address:</h2>
                         <h3>{campus.address}</h3>
                         <h2>Description:</h2>

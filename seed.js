@@ -21,7 +21,6 @@ const students = [{
     lastName: 'Lopez',
     email: 'dummythickskull12@gmail.com',
     gpa: 1.2,
-    campusId: 3
 }
 ]
 

@@ -27,13 +27,16 @@ function SingleStudentView() {
             return true
         }
     })
-    console.log(singleStudent)
+    // console.log(singleStudent)
     const singleCollege = state.campuses.filter(college => {
         if (singleStudent[0].campusId === college.id) {
             return true
         }
     })
-    console.log(singleCollege)
+
+    const noSchool = (
+        <h3>Not attending a school</h3>
+    )
 
     return (
         <div>
@@ -44,7 +47,7 @@ function SingleStudentView() {
                     <div key={student.id} className='single-student-card'>
                         <h1>{`${student.firstName} ${student.lastName}`}</h1>
                         <img src={student.imageUrl} width='200px' />
-                        <h3>College: {singleCollege[0].name}</h3>
+                        {singleCollege.length > 0 ? <h3>College: {singleCollege[0].name}</h3> : noSchool}
                         <h3>Email: {student.email}</h3>
                         <h3>GPA: {student.gpa}</h3>
                     </div>
