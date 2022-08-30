@@ -60,13 +60,13 @@ Congrats! You have completed your first vertical slice! Make sure to `commit -m 
 - [x ] Display the appropriate student when the url matches `/students/:studentId`
 - [x ] Clicking on a student from the all-students view should navigate to show that student in the single-student view
 
-- [ ] Clicking on the name of a student in the single-campus view should navigate to show that student in the single-student view
-- [ ] Clicking on the name of a campus in the single-student view should navigate to show that campus in the single-campus view
+- [x ] Clicking on the name of a student in the single-campus view should navigate to show that student in the single-student view
+- [x ] Clicking on the name of a campus in the single-student view should navigate to show that campus in the single-campus view
 
 #### Backend
 
-- [ ] Write a route to serve up a single campus (based on its id), _including that campuses' students_
-- [ ] Write a route to serve up a single student (based on their id), _including that student's campus_
+- [x ] Write a route to serve up a single campus (based on its id), _including that campuses' students_
+- [x ] Write a route to serve up a single student (based on their id), _including that student's campus_
 
 Congrats! You have completed your second vertical slice! Make sure to `commit -m "Feature: Get Single Campus and Student"` before moving on (see RUBRIC.md - points are awarded/deducted for a proper git workflow)!
 

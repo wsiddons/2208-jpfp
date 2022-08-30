@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, Route, Routes } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { getCampuses } from '../store/reducers/campusReducer'
 import { getStudents } from '../store/reducers/studentReducer'
@@ -30,12 +30,15 @@ function SingleCampusView() {
             return true
         }
     })
-
+    //link appends rather than replaces
     const studentAttendingList = (
         <>
             <h1>Students Attending {singleCampus[0].name}:</h1>
             {studentList.map(student =>
-                <h3 key={student.id}>{student.firstName} {student.lastName}</h3>
+                <Link to={`/students/${student.id}`}>
+                    <h3 key={student.id}>{student.firstName} {student.lastName}</h3>
+                </Link>
+
             )}
         </>
     )
