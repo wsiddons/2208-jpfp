@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams, Link, Route, Routes } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { getCampuses } from '../store/reducers/campusReducer'
@@ -10,6 +10,7 @@ function SingleCampusView() {
     const idNum = Number(params.id)
     const state = useSelector(state => state)
     const dispatch = useDispatch()
+
 
     useEffect(() => {
         const awaitingData = async () => {
@@ -49,10 +50,10 @@ function SingleCampusView() {
     )
 
 
-    console.log(studentList)
     return (
         <div>
             <h1 className='single-campus-title'>Single Campus View</h1>
+
             <div className='single-campus-container'>
                 {singleCampus.map((campus) =>
                     <div key={campus.id} className='single-campus-card'>

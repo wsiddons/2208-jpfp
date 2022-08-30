@@ -8,6 +8,14 @@ router.get('/campuses', async (req, res, next) => {
     res.send(campuses)
 })
 
+router.post('/campuses', async (req, res, next) => {
+    try {
+        res.send(await Campus.create(req.body))
+    } catch (err) {
+        next(err)
+    }
+})
+
 router.get('/students', async (req, res, next) => {
     const students = await Student.findAll()
     res.send(students)

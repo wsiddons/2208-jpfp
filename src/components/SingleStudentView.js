@@ -53,8 +53,6 @@ function SingleStudentView() {
                 )}
             </div>
         </div>
-
-
     )
 }
 

@@ -38,17 +38,36 @@
 /* end of home style */
 
 /* start of campus style */
-.campus-list>h1 {
+.campus-list {
+    display: flex;
+    margin-left: 10%;
+    margin-right: 10%;
+    align-items: flex-start;
+}
+
+.header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header-container h1 {
     margin: 80px 0 20px 0;
-    text-align: center;
+}
+
+.header-container button {
+    width: 140px;
+    background-color: limegreen;
+    color: rgb(30, 30, 30);
+    font-weight: 600;
+    font-size: 1.2em;
 }
 
 .campus-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    margin-left: 20%;
-    margin-right: 20%;
 }
 
 .campus-card {
@@ -131,6 +150,7 @@
     margin-top: 40px;
     display: flex;
     justify-content: center;
+    margin: 0 20%;
 }
 
 .single-campus-card {
@@ -141,3 +161,67 @@
 }
 
 /* end of single campus style */
+
+/* start of campus side view style */
+
+.campus-side-view-container {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border: 1px solid limegreen;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.campus-side-view-container h1 {}
+
+.campus-side-view-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    margin-right: 10%;
+    margin-left: 10%
+}
+
+
+.campus-side-view-container input {
+    margin: 10px 10px;
+    border: 1px solid limegreen;
+    font-size: 1.3em;
+}
+
+.campus-side-view-container button {
+    margin: 10px 10px;
+    width: 80px;
+    height: 30px;
+    border: none;
+    background-color: limegreen;
+    color: rgb(30, 30, 30);
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+.campus-side-view-container button:nth-child(even) {
+    margin: 10px 10px;
+    width: 80px;
+    height: 30px;
+    border: none;
+    background-color: red;
+    color: rgb(30, 30, 30);
+    font-size: 1.1em;
+    font-weight: 500;
+
+}
+
+/* .campus-side-view-container>button {
+    margin: 10px 10px;
+    width: 70px;
+    height: 30px;
+    border: none;
+    background-color: limegreen;
+    color: rgb(30, 30, 30);
+} */
+
+/* end of campus side view style */

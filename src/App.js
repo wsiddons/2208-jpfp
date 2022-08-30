@@ -4,6 +4,7 @@ import CampusList from "./components/CampusList";
 import Navbar from "./components/Navbar";
 import StudentList from "./components/StudentList";
 import Home from "./components/Home";
+import CampusSideView from "./components/CampusSideView";
 import SingleCampusView from "./components/SingleCampusView";
 import SingleStudentView from "./components/SingleStudentView";
 
@@ -15,6 +16,7 @@ function App() {
         <>
             <Navbar />
             <Routes>
+                {/* <Route index element={<CampusSideView />} /> */}
                 <Route index element={<Home />} />
                 <Route path={'campuses'} element={<CampusList />} />
                 <Route path={'campuses/:id'} element={<SingleCampusView />} />
