@@ -2,6 +2,7 @@
 import axios from "axios"
 const GET_CAMPUSES = 'GET_CAMPUSES'
 const ADD_CAMPUS = 'ADD_CAMPUS'
+const DELETE_CAMPUS = 'DELETE_CAMPUS'
 
 export const showCampuses = (campuses) => {
     return {
@@ -17,6 +18,13 @@ export const addCampus = (campus) => {
     }
 }
 
+export const deleteCampus = (campus) => {
+    return {
+        type: DELETE_CAMPUS,
+        campus
+    }
+}
+
 export function getCampuses() {
     return async function getCampusesThunk(dispatch, getState) {
         const response = await axios.get('/api/campuses')
@@ -26,10 +34,16 @@ export function getCampuses() {
 
 export const addCampusThunk = (campus) => {
     return async (dispatch) => {
-        const data = await axios.post('api/campuses', campus)
+        const data = await axios.post('/api/campuses', campus)
         console.log(data)
         dispatch(addCampus(data.data))
-        // history.push('/')
+    }
+}
+
+export const deleteCampusThunk = (campusId) => {
+    return async (dispatch) => {
+        const data = await axios.delete(`/api/campuses/${campusId}`)
+        dispatch(deleteCampus(data.data))
     }
 }
 
@@ -39,9 +53,9 @@ const reducer = (state = [], action) => {
         case GET_CAMPUSES:
             return action.campuses
         case ADD_CAMPUS:
-            console.log(action.campus)
-            console.log(state)
             return [...state, action.campus]
+        case DELETE_CAMPUS:
+            return state.filter((campus) => campus.id !== action.campus.id)
         default:
             return state
     }

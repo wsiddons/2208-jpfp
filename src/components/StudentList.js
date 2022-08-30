@@ -5,6 +5,7 @@ import { useParams, Link } from 'react-router-dom'
 import { getCampuses } from '../store/reducers/campusReducer'
 import { getStudents } from '../store/reducers/studentReducer'
 import StudentSideView from './StudentSideView'
+import { deleteStudentThunk } from '../store/reducers/studentReducer'
 
 function StudentList() {
     const dispatch = useDispatch()
@@ -35,6 +36,7 @@ function StudentList() {
                             {/* <h3>School: {student.campusId}</h3> */}
                             <h3>Email: {student.email}</h3>
                             <h3>GPA: {student.gpa}</h3>
+                            <button onClick={() => deleteStudentThunk(student.id)(dispatch)}>Delete Student</button>
                         </div>
                     )}
                 </div>

@@ -31,7 +31,7 @@ function SingleCampusView() {
             return true
         }
     })
-    //link appends rather than replaces
+
     const studentAttendingList = (
         <>
             <h1>Students Attending {singleCampus[0].name}:</h1>
@@ -39,7 +39,6 @@ function SingleCampusView() {
                 <Link to={`/students/${student.id}`}>
                     <h3 key={student.id}>{student.firstName} {student.lastName}</h3>
                 </Link>
-
             )}
         </>
     )

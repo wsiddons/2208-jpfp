@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
 import { getCampuses } from '../store/reducers/campusReducer'
 import { getStudents } from '../store/reducers/studentReducer'
+import { deleteCampusThunk } from '../store/reducers/campusReducer'
 import CampusSideView from './CampusSideView'
 
 function CampusList() {
@@ -29,20 +30,19 @@ function CampusList() {
                 <button onClick={() => setTorf(!torf)}>Add Campus</button>
             </div>
             <div className='campus-list'>
-
                 <div className='campus-container'>
                     {state.campuses.map((campus, idx) =>
                         <div key={campus.id} className='campus-card'>
                             <h1>{campus.name}</h1>
-                            <Link to={`${idx + 1}`}>
+                            <Link to={`${campus.id}`}>
                                 <img src={campus.imageUrl} width='200px' />
                             </Link>
                             <h2>Address:</h2>
                             <h3>{campus.address}</h3>
                             <p>{campus.description}</p>
+                            <button onClick={() => deleteCampusThunk(campus.id)(dispatch)}>Delete Campus</button>
                         </div>
                     )}
-
                 </div>
             </div>
         </>

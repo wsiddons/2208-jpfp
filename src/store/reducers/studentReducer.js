@@ -7,6 +7,7 @@ import { fetchStudents } from '../actions/studentActions'
 // let initialState = fetchStudents()
 const GET_STUDENTS = 'GET_STUDENTS'
 const ADD_STUDENTS = 'ADD_STUDENTS'
+const DELETE_STUDENTS = 'DELETE_STUDENTS'
 
 export const showStudents = (students) => {
     return {
@@ -18,6 +19,13 @@ export const showStudents = (students) => {
 export const addStudent = (student) => {
     return {
         type: ADD_STUDENTS,
+        student
+    }
+}
+
+export const deleteStudent = (student) => {
+    return {
+        type: DELETE_STUDENTS,
         student
     }
 }
@@ -38,13 +46,21 @@ export const addStudentThunk = (student) => {
     }
 }
 
+export const deleteStudentThunk = (studentId) => {
+    return async (dispatch) => {
+        const data = await axios.delete(`/api/students/${studentId}`)
+        dispatch(deleteStudent(data.data))
+    }
+}
+
 const reducer = (state = [], action) => {
     switch (action.type) {
         case 'GET_STUDENTS':
-            // console.log(action)
             return action.students
         case 'ADD_STUDENTS':
             return [...state, action.student]
+        case 'DELETE_STUDENTS':
+            return state.filter((student) => student.id !== action.student.id)
         default:
             return state
     }

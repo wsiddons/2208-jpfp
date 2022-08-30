@@ -44,7 +44,7 @@ function SingleStudentView() {
             <div className='single-student-container'>
                 {singleStudent.map((student, idx) =>
                     <div key={student.id} className='single-student-card'>
-                        <h1>{`${student.firstName} ${student.lastName}`}</h1>
+                        <h1 className='single-student-card-header'>{`${student.firstName} ${student.lastName}`}</h1>
                         <img src={student.imageUrl} width='200px' />
                         {singleCollege.length > 0 ? <Link to={`/campuses/${singleCollege[0].id}`}><h3>College: {singleCollege[0].name}</h3></Link> : noSchool}
                         <h3>Email: {student.email}</h3>

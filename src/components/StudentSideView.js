@@ -8,7 +8,7 @@ function StudentSideView() {
     const [firstName, setFirstName] = useState('')
     const [lastName, setlastName] = useState('')
     const [email, setEmail] = useState('')
-    const [profilePic, setProfilePic] = useState('')
+    const [imageUrl, setImageUrl] = useState('')
     const [gpa, setGpa] = useState('')
     const [school, setSchool] = useState('')
 
@@ -22,7 +22,7 @@ function StudentSideView() {
         setEmail(event.target.value)
     }
     const handleProfilePic = (event) => {
-        setProfilePic(event.target.value)
+        setImageUrl(event.target.value)
     }
     const handleGpa = (event) => {
         setGpa(event.target.value)
@@ -33,7 +33,7 @@ function StudentSideView() {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        addStudentThunk({ firstName, lastName, email, profilePic, gpa, school })(dispatch)
+        addStudentThunk({ firstName, lastName, email, imageUrl, gpa, school })(dispatch)
     }
 
     return (
