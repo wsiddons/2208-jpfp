@@ -3,6 +3,7 @@ import { useParams, Link, Route, Routes } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { getCampuses } from '../store/reducers/campusReducer'
 import { getStudents } from '../store/reducers/studentReducer'
+import UpdateCampus from './UpdateCampus'
 
 function SingleCampusView() {
 
@@ -65,6 +66,9 @@ function SingleCampusView() {
                         <p>{campus.description}</p>
                     </div>
                 )}
+                <div>
+                    <UpdateCampus />
+                </div>
             </div>
         </div>
     )

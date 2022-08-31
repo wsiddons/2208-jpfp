@@ -30,7 +30,7 @@ function StudentList() {
                     {state.students.map((student, idx) =>
                         <div key={student.id} className='student-card'>
                             <h1>{`${student.firstName} ${student.lastName}`}</h1>
-                            <Link to={`${idx + 1}`}>
+                            <Link to={`${student.id}`}>
                                 <img src={student.imageUrl} width='200px' />
                             </Link>
                             {/* <h3>School: {student.campusId}</h3> */}

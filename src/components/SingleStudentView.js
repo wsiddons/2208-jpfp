@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { getCampuses } from '../store/reducers/campusReducer'
 import { getStudents } from '../store/reducers/studentReducer'
+import UpdateStudent from './UpdateStudent'
 
 
 function SingleStudentView() {
@@ -27,7 +28,7 @@ function SingleStudentView() {
             return true
         }
     })
-    // console.log(singleStudent)
+
     const singleCollege = state.campuses.filter(college => {
         if (singleStudent[0].campusId === college.id) {
             return true
@@ -51,6 +52,9 @@ function SingleStudentView() {
                         <h3>GPA: {student.gpa}</h3>
                     </div>
                 )}
+                <div className='update-student-container'>
+                    <UpdateStudent />
+                </div>
             </div>
         </div>
     )

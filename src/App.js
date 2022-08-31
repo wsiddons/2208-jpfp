@@ -18,7 +18,7 @@ function App() {
             <Routes>
                 {/* <Route index element={<CampusSideView />} /> */}
                 <Route index element={<Home />} />
-                <Route path={'campuses'} element={<CampusList />} />
+                <Route index path={'/campuses'} element={<CampusList />} />
                 <Route path={'campuses/:id'} element={<SingleCampusView />} />
                 <Route path={'students'} element={<StudentList />} />
                 <Route path={'students/:id'} element={<SingleStudentView />} />

@@ -171,11 +171,6 @@
 
 }
 
-
-
-
-
-
 /* start of single student style */
 .single-student-title {
     margin-top: 80px;
@@ -183,7 +178,46 @@
     text-align: center;
 }
 
-.add-container {}
+.single-student-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.student-update-container {
+    margin-left: 20px;
+}
+
+.student-update-container h2 {
+    background-color: limegreen;
+    color: rgb(30, 30, 30);
+}
+
+.student-update-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    background-color: limegreen;
+    padding: 10px 15px;
+}
+
+.student-update-container label {
+    margin: 10px 0;
+    background-color: limegreen;
+    color: rgb(30, 30, 30);
+    font-size: 1.1em;
+    font-weight: 600;
+    /* color: rgb(30, 30, 30); */
+}
+
+.student-update-container button {
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 130px;
+}
+
+
 
 .student-list {
     margin-top: 40px;
@@ -198,7 +232,6 @@
     text-align: center;
     border: 1px solid limegreen;
     padding: 10px 20px;
-    margin: 0 25%
 }
 
 .single-student-card-header {
@@ -217,7 +250,7 @@
     margin-top: 40px;
     display: flex;
     justify-content: center;
-    margin: 0 20%;
+    margin: 20px 20%;
 }
 
 .single-campus-card {
@@ -225,6 +258,37 @@
     text-align: center;
     border: 1px solid limegreen;
     padding: 10px 20px;
+    margin-right: 10px;
+}
+
+.update-campus-container {
+    margin-left: 10px;
+}
+
+.update-campus-container form {
+    background-color: limegreen;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px 20px
+}
+
+.update-campus-container label {
+    background-color: limegreen;
+    color: rgb(30, 30, 30);
+    font-weight: 600;
+    font-size: 1.1em;
+    margin: 10px 0;
+}
+
+.update-campus-container button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.update-campus-container h2 {
+    background-color: limegreen;
+    color: rgb(30, 30, 30);
 }
 
 
