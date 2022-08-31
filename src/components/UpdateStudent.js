@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
+import { updateStudentThunk } from '../store/reducers/studentReducer'
 
 function UpdateStudent() {
     const dispatch = useDispatch()
@@ -10,6 +12,15 @@ function UpdateStudent() {
     const [imageUrl, setImageUrl] = useState('')
     const [gpa, setGpa] = useState('')
     const [school, setSchool] = useState('')
+    const [id, setId] = useState(0)
+    const params = Number(useParams().id)
+
+    const studentFilter = state.students.filter(student => student.id === params)
+    useEffect(() => {
+        setId(studentFilter[0].id)
+    }, [])
+
+
 
     const handleFirstName = (event) => {
         setFirstName(event.target.value)
@@ -32,7 +43,7 @@ function UpdateStudent() {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        // addStudentThunk({ firstName, lastName, email, imageUrl, gpa, school })(dispatch)
+        updateStudentThunk({ firstName, lastName, email, imageUrl, gpa, school, id })(dispatch)
     }
     return (
         <>
@@ -60,17 +71,17 @@ function UpdateStudent() {
                         GPA:
                         <input onChange={handleGpa} type='text' name='gpa' placeholder='GPA' />
                     </label>
-                    <label>
+                    {/* <label>
                         School:
                         <select onChange={handleSchool}>
                             {state.campuses.map((campus, idx) =>
                                 <>
-                                    <option key={campus.id}>{campus.name}</option>
+                                    <option key={campus.id} value={campus.id}>{campus.name}</option>
                                 </>
                             )}
                         </select>
-                    </label>
-                    <button type='submit'>Add Student</button>
+                    </label> */}
+                    <button type='submit'>Edit Student</button>
                 </form>
             </div>
         </>

@@ -60,7 +60,7 @@ function StudentSideView() {
                         GPA:
                         <input onChange={handleGpa} type='text' name='gpa' placeholder='GPA' />
                     </label>
-                    <label>
+                    {/* <label>
                         School:
                         <select onChange={handleSchool}>
                             {state.campuses.map((campus, idx) =>
@@ -70,7 +70,7 @@ function StudentSideView() {
                                 </>
                             )}
                         </select>
-                    </label>
+                    </label> */}
                     <button type='submit'>Add Student</button>
                 </form>
             </div>

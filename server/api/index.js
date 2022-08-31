@@ -27,6 +27,15 @@ router.post('/campuses', async (req, res, next) => {
     }
 })
 
+router.put('/campuses/:id', async (req, res, next) => {
+    try {
+        const toBeUpdated = await Campus.findOne({ where: { id: req.params.id } })
+        res.send(await toBeUpdated.update(req.body))
+    } catch (err) {
+        next(err)
+    }
+})
+
 router.get('/students', async (req, res, next) => {
     const students = await Student.findAll()
     res.send(students)
@@ -45,6 +54,15 @@ router.delete('/students/:id', async (req, res, next) => {
 router.post('/students', async (req, res, next) => {
     try {
         res.send(await Student.create(req.body))
+    } catch (err) {
+        next(err)
+    }
+})
+
+router.put('/students/:id', async (req, res, next) => {
+    try {
+        const toBeUpdated = await Student.findOne({ where: { id: req.params.id } })
+        res.send(await toBeUpdated.update(req.body))
     } catch (err) {
         next(err)
     }

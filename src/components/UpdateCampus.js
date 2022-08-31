@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
+import { updateCampus, updateCampusThunk } from '../store/reducers/campusReducer'
 
 function UpdateCampus() {
     const dispatch = useDispatch()
@@ -7,6 +9,16 @@ function UpdateCampus() {
     const [address, setAddress] = useState('')
     const [imageUrl, setImageUrl] = useState('')
     const [description, setDescription] = useState('')
+    const [id, setId] = useState(0)
+    const params = Number(useParams().id)
+
+
+    const state = useSelector(state => state.campuses)
+
+    const campusFilter = state.filter(campus => campus.id === params)
+    useEffect(() => {
+        setId(campusFilter[0].id)
+    }, [])
 
     const handleName = (event) => {
         setName(event.target.value)
@@ -25,9 +37,10 @@ function UpdateCampus() {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        console.log(name, address)
-        // addCampusThunk({ name, address, description, imageUrl })(dispatch)
+        console.log(name, address, description, imageUrl)
+        updateCampusThunk({ name, address, description, imageUrl, id })(dispatch)
     }
+
     return (
         <>
             <div className='update-campus-container'>

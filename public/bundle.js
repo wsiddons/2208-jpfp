@@ -2905,12 +2905,22 @@ function SingleCampusView() {
       return true;
     }
   });
+  console.log(state.students);
   var studentAttendingList = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Students Attending ", singleCampus[0].name, ":"), studentList.map(function (student) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "span-thing"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
       to: "/students/".concat(student.id)
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
       key: student.id
-    }, student.firstName, " ", student.lastName));
+    }, student.firstName, " ", student.lastName, "   ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      onClick: function onClick() {
+        return (0,_store_reducers_studentReducer__WEBPACK_IMPORTED_MODULE_3__.updateStudentThunk)({
+          id: student.id,
+          campusId: null
+        })(dispatch);
+      }
+    }, "unregister"));
   }));
   var noStudentsAttending = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "No students currently attending ", singleCampus[0].name));
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
@@ -3273,13 +3283,7 @@ function StudentSideView() {
     type: "text",
     name: "gpa",
     placeholder: "GPA"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "School:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("select", {
-    onChange: handleSchool
-  }, state.campuses.map(function (campus, idx) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
-      key: campus.id
-    }, campus.name));
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     type: "submit"
   }, "Add Student"))));
 }
@@ -3302,6 +3306,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
+/* harmony import */ var _store_reducers_campusReducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/reducers/campusReducer */ "./src/store/reducers/campusReducer.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -3313,6 +3319,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
@@ -3340,6 +3348,22 @@ function UpdateCampus() {
       description = _useState8[0],
       setDescription = _useState8[1];
 
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+      _useState10 = _slicedToArray(_useState9, 2),
+      id = _useState10[0],
+      setId = _useState10[1];
+
+  var params = Number((0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useParams)().id);
+  var state = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
+    return state.campuses;
+  });
+  var campusFilter = state.filter(function (campus) {
+    return campus.id === params;
+  });
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    setId(campusFilter[0].id);
+  }, []);
+
   var handleName = function handleName(event) {
     setName(event.target.value);
   };
@@ -3358,7 +3382,14 @@ function UpdateCampus() {
 
   var handleSubmit = function handleSubmit(event) {
     event.preventDefault();
-    console.log(name, address); // addCampusThunk({ name, address, description, imageUrl })(dispatch)
+    console.log(name, address, description, imageUrl);
+    (0,_store_reducers_campusReducer__WEBPACK_IMPORTED_MODULE_2__.updateCampusThunk)({
+      name: name,
+      address: address,
+      description: description,
+      imageUrl: imageUrl,
+      id: id
+    })(dispatch);
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -3410,6 +3441,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
+/* harmony import */ var _store_reducers_studentReducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/reducers/studentReducer */ "./src/store/reducers/studentReducer.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -3421,6 +3454,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
@@ -3461,6 +3496,19 @@ function UpdateStudent() {
       school = _useState12[0],
       setSchool = _useState12[1];
 
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+      _useState14 = _slicedToArray(_useState13, 2),
+      id = _useState14[0],
+      setId = _useState14[1];
+
+  var params = Number((0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useParams)().id);
+  var studentFilter = state.students.filter(function (student) {
+    return student.id === params;
+  });
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    setId(studentFilter[0].id);
+  }, []);
+
   var handleFirstName = function handleFirstName(event) {
     setFirstName(event.target.value);
   };
@@ -3486,7 +3534,16 @@ function UpdateStudent() {
   };
 
   var handleSubmit = function handleSubmit(event) {
-    event.preventDefault(); // addStudentThunk({ firstName, lastName, email, imageUrl, gpa, school })(dispatch)
+    event.preventDefault();
+    (0,_store_reducers_studentReducer__WEBPACK_IMPORTED_MODULE_2__.updateStudentThunk)({
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      imageUrl: imageUrl,
+      gpa: gpa,
+      school: school,
+      id: id
+    })(dispatch);
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -3518,15 +3575,9 @@ function UpdateStudent() {
     type: "text",
     name: "gpa",
     placeholder: "GPA"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "School:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("select", {
-    onChange: handleSchool
-  }, state.campuses.map(function (campus, idx) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
-      key: campus.id
-    }, campus.name));
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     type: "submit"
-  }, "Add Student"))));
+  }, "Edit Student"))));
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UpdateStudent);
@@ -3600,7 +3651,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "deleteCampus": () => (/* binding */ deleteCampus),
 /* harmony export */   "deleteCampusThunk": () => (/* binding */ deleteCampusThunk),
 /* harmony export */   "getCampuses": () => (/* binding */ getCampuses),
-/* harmony export */   "showCampuses": () => (/* binding */ showCampuses)
+/* harmony export */   "showCampuses": () => (/* binding */ showCampuses),
+/* harmony export */   "updateCampus": () => (/* binding */ updateCampus),
+/* harmony export */   "updateCampusThunk": () => (/* binding */ updateCampusThunk)
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
@@ -3628,6 +3681,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var GET_CAMPUSES = 'GET_CAMPUSES';
 var ADD_CAMPUS = 'ADD_CAMPUS';
 var DELETE_CAMPUS = 'DELETE_CAMPUS';
+var UPDATE_CAMPUS = 'UPDATE_CAMPUS';
 var showCampuses = function showCampuses(campuses) {
   return {
     type: GET_CAMPUSES,
@@ -3643,6 +3697,12 @@ var addCampus = function addCampus(campus) {
 var deleteCampus = function deleteCampus(campus) {
   return {
     type: DELETE_CAMPUS,
+    campus: campus
+  };
+};
+var updateCampus = function updateCampus(campus) {
+  return {
+    type: UPDATE_CAMPUS,
     campus: campus
   };
 };
@@ -3733,6 +3793,34 @@ var deleteCampusThunk = function deleteCampusThunk(campusId) {
     };
   }();
 };
+var updateCampusThunk = function updateCampusThunk(campus) {
+  return /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(dispatch) {
+      var data;
+      return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.next = 2;
+              return axios__WEBPACK_IMPORTED_MODULE_0___default().put("/api/campuses/".concat(campus.id), campus);
+
+            case 2:
+              data = _context4.sent;
+              dispatch(updateCampus(data.data));
+
+            case 4:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4);
+    }));
+
+    return function (_x5) {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+};
 
 var reducer = function reducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
@@ -3749,6 +3837,12 @@ var reducer = function reducer() {
       return state.filter(function (campus) {
         return campus.id !== action.campus.id;
       });
+
+    case UPDATE_CAMPUS:
+      return state.map(function (campus) {
+        return campus.id === action.campus.id ? action.campus : campus;
+      });
+    // return [...state, action.campus]
 
     default:
       return state;
@@ -3799,7 +3893,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "deleteStudent": () => (/* binding */ deleteStudent),
 /* harmony export */   "deleteStudentThunk": () => (/* binding */ deleteStudentThunk),
 /* harmony export */   "getStudents": () => (/* binding */ getStudents),
-/* harmony export */   "showStudents": () => (/* binding */ showStudents)
+/* harmony export */   "showStudents": () => (/* binding */ showStudents),
+/* harmony export */   "updateStudent": () => (/* binding */ updateStudent),
+/* harmony export */   "updateStudentThunk": () => (/* binding */ updateStudentThunk)
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
@@ -3830,6 +3926,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var GET_STUDENTS = 'GET_STUDENTS';
 var ADD_STUDENTS = 'ADD_STUDENTS';
 var DELETE_STUDENTS = 'DELETE_STUDENTS';
+var UPDATE_STUDENT = 'UPDATE_STUDENT';
 var showStudents = function showStudents(students) {
   return {
     type: GET_STUDENTS,
@@ -3845,6 +3942,12 @@ var addStudent = function addStudent(student) {
 var deleteStudent = function deleteStudent(student) {
   return {
     type: DELETE_STUDENTS,
+    student: student
+  };
+};
+var updateStudent = function updateStudent(student) {
+  return {
+    type: UPDATE_STUDENT,
     student: student
   };
 };
@@ -3936,6 +4039,34 @@ var deleteStudentThunk = function deleteStudentThunk(studentId) {
     };
   }();
 };
+var updateStudentThunk = function updateStudentThunk(student) {
+  return /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(dispatch) {
+      var data;
+      return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.next = 2;
+              return axios__WEBPACK_IMPORTED_MODULE_0___default().put("/api/students/".concat(student.id), student);
+
+            case 2:
+              data = _context4.sent;
+              dispatch(updateStudent(data.data));
+
+            case 4:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4);
+    }));
+
+    return function (_x5) {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+};
 
 var reducer = function reducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
@@ -3951,6 +4082,11 @@ var reducer = function reducer() {
     case 'DELETE_STUDENTS':
       return state.filter(function (student) {
         return student.id !== action.student.id;
+      });
+
+    case 'UPDATE_STUDENT':
+      return state.map(function (student) {
+        return student.id === action.student.id ? action.student : student;
       });
 
     default:

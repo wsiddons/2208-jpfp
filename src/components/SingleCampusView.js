@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, Link, Route, Routes } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { getCampuses } from '../store/reducers/campusReducer'
-import { getStudents } from '../store/reducers/studentReducer'
+import { getCampuses, updateCampusThunk } from '../store/reducers/campusReducer'
+import { getStudents, updateStudentThunk } from '../store/reducers/studentReducer'
 import UpdateCampus from './UpdateCampus'
 
 function SingleCampusView() {
@@ -32,14 +32,20 @@ function SingleCampusView() {
             return true
         }
     })
-
+    console.log(state.students)
     const studentAttendingList = (
         <>
             <h1>Students Attending {singleCampus[0].name}:</h1>
             {studentList.map(student =>
-                <Link to={`/students/${student.id}`}>
-                    <h3 key={student.id}>{student.firstName} {student.lastName}</h3>
-                </Link>
+                <div className='span-thing'>
+                    <Link to={`/students/${student.id}`}>
+
+                        <h3 key={student.id}>{student.firstName} {student.lastName}   </h3>
+
+
+                    </Link>
+                    <button onClick={() => updateStudentThunk({ id: student.id, campusId: null })(dispatch)}>unregister</button>
+                </div>
             )}
         </>
     )

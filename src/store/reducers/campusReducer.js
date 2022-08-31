@@ -3,6 +3,7 @@ import axios from "axios"
 const GET_CAMPUSES = 'GET_CAMPUSES'
 const ADD_CAMPUS = 'ADD_CAMPUS'
 const DELETE_CAMPUS = 'DELETE_CAMPUS'
+const UPDATE_CAMPUS = 'UPDATE_CAMPUS'
 
 export const showCampuses = (campuses) => {
     return {
@@ -21,6 +22,13 @@ export const addCampus = (campus) => {
 export const deleteCampus = (campus) => {
     return {
         type: DELETE_CAMPUS,
+        campus
+    }
+}
+
+export const updateCampus = (campus) => {
+    return {
+        type: UPDATE_CAMPUS,
         campus
     }
 }
@@ -47,6 +55,12 @@ export const deleteCampusThunk = (campusId) => {
     }
 }
 
+export const updateCampusThunk = (campus) => {
+    return async (dispatch) => {
+        const data = await axios.put(`/api/campuses/${campus.id}`, campus)
+        dispatch(updateCampus(data.data))
+    }
+}
 
 const reducer = (state = [], action) => {
     switch (action.type) {
@@ -56,6 +70,11 @@ const reducer = (state = [], action) => {
             return [...state, action.campus]
         case DELETE_CAMPUS:
             return state.filter((campus) => campus.id !== action.campus.id)
+        case UPDATE_CAMPUS:
+            return state.map((campus) =>
+                campus.id === action.campus.id ? action.campus : campus
+            )
+        // return [...state, action.campus]
         default:
             return state
     }

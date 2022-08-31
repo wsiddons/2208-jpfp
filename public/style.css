@@ -357,3 +357,25 @@
 } */
 
 /* end of campus side view style */
+
+.span-thing {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.span-thing button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    background-color: limegreen;
+    color: rgb(30, 30, 30);
+    text-decoration: none;
+    border: none;
+    font-weight: 600;
+}
+
+.span-thing h3 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

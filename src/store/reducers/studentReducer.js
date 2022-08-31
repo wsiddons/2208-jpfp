@@ -8,6 +8,7 @@ import { fetchStudents } from '../actions/studentActions'
 const GET_STUDENTS = 'GET_STUDENTS'
 const ADD_STUDENTS = 'ADD_STUDENTS'
 const DELETE_STUDENTS = 'DELETE_STUDENTS'
+const UPDATE_STUDENT = 'UPDATE_STUDENT'
 
 export const showStudents = (students) => {
     return {
@@ -26,6 +27,13 @@ export const addStudent = (student) => {
 export const deleteStudent = (student) => {
     return {
         type: DELETE_STUDENTS,
+        student
+    }
+}
+
+export const updateStudent = (student) => {
+    return {
+        type: UPDATE_STUDENT,
         student
     }
 }
@@ -53,6 +61,13 @@ export const deleteStudentThunk = (studentId) => {
     }
 }
 
+export const updateStudentThunk = (student) => {
+    return async (dispatch) => {
+        const data = await axios.put(`/api/students/${student.id}`, student)
+        dispatch(updateStudent(data.data))
+    }
+}
+
 const reducer = (state = [], action) => {
     switch (action.type) {
         case 'GET_STUDENTS':
@@ -61,6 +76,10 @@ const reducer = (state = [], action) => {
             return [...state, action.student]
         case 'DELETE_STUDENTS':
             return state.filter((student) => student.id !== action.student.id)
+        case 'UPDATE_STUDENT':
+            return state.map((student) =>
+                student.id === action.student.id ? action.student : student
+            )
         default:
             return state
     }
